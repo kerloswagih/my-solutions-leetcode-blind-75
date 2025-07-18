@@ -1,0 +1,29 @@
+class Solution {
+public:
+//time o(n)
+//space o(n)
+    vector<int> twoSum(vector<int>& nums, int target) 
+    {
+    
+        vector <int> index(2);
+        unordered_map<int,int> hashtable;  //key is the nums[i] value is i
+        for(int i=0;i<nums.size();i++)
+        {
+            //SEARCH THEN INSERT (SEARCH IN LEFT OR BEFORR=E)
+            //hashtable[key]=value;
+            auto it = hashtable.find(target-nums[i]);
+            // key is it-> first 
+                       // value is it-> second
+            if(it!= hashtable.end())
+            {
+                index[0]=i; //index of nums[i]
+                index[1]=it->second;    //index of (target-nums[i])
+                return index;
+            }
+            
+            hashtable[nums[i]]=i;
+
+        }
+        return index;
+    }
+};

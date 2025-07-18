@@ -1,0 +1,56 @@
+#include <stack> 
+using namespace std;
+class Solution {
+public:
+//time o(n) 
+//memory o(n)
+    bool isValid(string s) 
+    {
+        stack <char> mystack;
+        for(int i =0;i<s.size();i++)
+        { 
+        
+            if(s[i]=='('||s[i]=='{'||s[i]=='[')
+            {
+
+            mystack.push(s[i]);
+            continue;
+            }
+
+            if(mystack.empty())
+            return false;
+            char top = mystack.top();
+
+            if(s[i]==')')
+            {
+                if(top=='(') 
+                mystack.pop();
+                else
+                return false;
+            }
+            else
+            if(s[i]=='}')
+            {
+                if(top=='{') 
+                mystack.pop();
+                else
+                return false;
+            }
+            else
+            if(s[i]==']')
+            {
+                if(top=='[') 
+                mystack.pop();
+                else
+                return false;
+            }
+            
+            
+
+        }
+        
+    
+        return mystack.empty();
+
+    }
+};

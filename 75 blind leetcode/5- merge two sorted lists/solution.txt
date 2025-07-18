@@ -1,0 +1,95 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) 
+    {
+        // it is better to interate using p1 and p2 instead of heads (list1 and list2)
+        //ListNode* p1= list1;
+       // ListNode* p2= list2;
+       // replace each list1 with p1 and same list2 with p2 
+
+       // we need to know which list will be the head so we make check before we enter the while to set our head correctly 
+
+       // we need to declare tail to use it to keep track of the last element inserted so far to link it with the next elements
+       
+        ListNode*list;
+        ListNode*tail;
+        if(!list1)
+        return list2;
+       if(!list2)
+       return list1;
+            if ( list1->val > list2->val )
+         {
+        list = list2;
+        tail = list2;
+        list2= list2->next ;
+         }
+        else 
+        {
+        list = list1;
+        tail = list1;
+        list1= list1->next ;
+        }
+         while (list1 && list2)
+         {
+        
+        
+            if(list1->val>list2->val)
+            {
+                tail->next =list2;
+                list2=list2->next;
+                tail = tail->next;
+
+
+            }
+            else 
+            {
+                tail->next =list1;
+                list1=list1->next;
+                tail = tail->next;
+            }
+
+
+
+         }
+         /*
+         while(list1)
+         {
+            
+           tail->next = list1;
+           list1 = list1->next;
+           tail = tail->next;
+         }
+         while(list2)
+         {
+            
+           tail->next = list2;
+           list2 = list2->next;
+           tail = tail->next;
+         }
+         */
+         // the previous two whiles or the next 2 ifs
+          if(list1)   // i only need one if as all the remaining list1 elements is already connected
+         {
+            
+           tail->next = list1;
+           
+         }
+         if(list2) // i only need one if as all the remaining list2 elements is already connected
+         {
+            
+           tail->next = list2;
+          
+         }
+return list ;
+    }
+};
