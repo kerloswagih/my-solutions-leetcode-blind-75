@@ -1,0 +1,56 @@
+class Solution {
+public:
+   void bfs_visited(vector<vector<int>> &adj,vector<bool> &visited,int u)
+   {
+     queue<int> q;
+     visited[u]=true;
+     q.push(u);
+     while(!q.empty())
+     {
+     int x =q.front();
+     q.pop();
+     for(auto v : adj[x])
+     {
+        if(!visited[v])
+        {
+        q.push(v);
+        visited[v]=true;
+        }
+
+
+     }
+     }
+     
+
+
+   }
+    int countComponents(int n, vector<vector<int>>& edges) 
+    {
+    vector<vector<int>> adj(n);
+    for(auto edge : edges)
+    {
+        int x = edge[0];
+        int y = edge[1];
+        adj[x].push_back(y);
+        adj[y].push_back(x);
+
+    }
+
+    vector<bool> visited(n,false);
+    int count = 0;
+    for(int u = 0;u<n;u++)
+    {
+        if(!visited[u])
+        {
+        bfs_visited(adj,visited,u);
+        count++;
+        }
+
+    }
+
+    return count ; 
+
+    }
+
+   
+};
